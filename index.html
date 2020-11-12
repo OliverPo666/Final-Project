@@ -11,7 +11,7 @@
         }
         table{
             position:absolute;
-            left: 0;
+            left:0;
             top:0;
         }
         td{
@@ -168,9 +168,13 @@
         function createDiv(color){
             var div = document.createElement("div")
             map.appendChild(div)
+            div.style.left=parseInt(Math.random()*10)*50+"px"
+            div.style.top=parseInt(Math.random()*10)*50+"px"
             div.style.background = color
         }
         createDiv("blue")
+        createDiv("red")
+        console.log(Math.random())
     </script>
 </body>
 </html>
