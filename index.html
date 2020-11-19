@@ -171,10 +171,48 @@
             div.style.left=parseInt(Math.random()*10)*50+"px"
             div.style.top=parseInt(Math.random()*10)*50+"px"
             div.style.background = color
+            return div
         }
-        createDiv("blue")
-        createDiv("red")
+        var headNode = createDiv("blue")
+        headNode.value = "left"
+        console.log(headNode.value)
+        var foodNode = createDiv("red")
+        console.log(foodNode)
         console.log(Math.random())
+        function move(){
+            switch(headNode.value){
+                case "left":
+                headNode.style.left = parseInt(headNode.style.left)-50+ "px"
+                break
+                case "right":
+                headNode.style.left = parseInt(headNode.style.left)+50+ "px"
+                break
+                case "up":
+                headNode.style.top = parseInt(headNode.style.top)-50+ "px"
+                break
+                case "down":
+                headNode.style.top = parseInt(headNode.style.top)+50+ "px"
+                break
+            }
+        }
+        var t = setInterval(move,1000)
+        document.onkeydown=function(e){
+            console.log(e.keyCode)
+            switch(e.keyCode){
+                case 37:
+                headNode.value = "left"
+                break
+                case 38:
+                headNode.value = "up"
+                break
+                case 39:
+                headNode.value = "right"
+                break
+                case 40:
+                headNode.value = "down"
+                break
+            }
+        }
     </script>
 </body>
 </html>
