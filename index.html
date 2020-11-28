@@ -188,7 +188,7 @@
         console.log(Math.random())
         function move() {
             if (bodyNodes.length > 0) {
-                for (var n = 0; n < bodyNodes.length; n++) {
+                for (var n = bodyNodes.length-1; n >= 0; n--) {
                     switch (bodyNodes[n].value) {
                         case "left":
                             bodyNodes[n].style.left = parseInt(bodyNodes[n].style.left) - 50 + "px"
@@ -202,6 +202,12 @@
                         case "down":
                             bodyNodes[n].style.top = parseInt(bodyNodes[n].style.top) + 50 + "px"
                             break
+                    }
+                    if (n == 0) {
+                        bodyNodes[n].value = headNode.value
+                    }
+                    else {
+                        bodyNodes[n].value = bodyNodes[n - 1].value
                     }
                 }
             }
