@@ -194,10 +194,13 @@
                 headNode.style.top = parseInt(headNode.style.top)+50+ "px"
                 break
             }
+            if(headNode.style.left==foodNode.style.left&&headNode.style.top==foodNode.style.top){
+                 foodNode.style.left=parseInt(Math.random()*10)*50+"px"
+                 foodNode.style.top=parseInt(Math.random()*10)*50+"px"
+            }
         }
-        var t = setInterval(move,1000)
+        var t = setInterval(move,500)
         document.onkeydown=function(e){
-            console.log(e.keyCode)
             switch(e.keyCode){
                 case 37:
                 headNode.value = "left"
