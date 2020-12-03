@@ -188,7 +188,7 @@
         console.log(Math.random())
         function move() {
             if (bodyNodes.length > 0) {
-                for (var n = bodyNodes.length-1; n >= 0; n--) {
+                for (var n = bodyNodes.length - 1; n >= 0; n--) {
                     switch (bodyNodes[n].value) {
                         case "left":
                             bodyNodes[n].style.left = parseInt(bodyNodes[n].style.left) - 50 + "px"
@@ -203,7 +203,7 @@
                             bodyNodes[n].style.top = parseInt(bodyNodes[n].style.top) + 50 + "px"
                             break
                     }
-                    
+
                     if (n == 0) {
                         bodyNodes[n].value = headNode.value
                     }
@@ -228,16 +228,16 @@
                     break
             }
             //hit the wall
-            if(parseInt(headNode.style.left)<0 || parseInt(headNode.style.left)>450 
-            || parseInt(headNode.style.top)<0 || parseInt(headNode.style.top)>450){
+            if (parseInt(headNode.style.left) < 0 || parseInt(headNode.style.left) > 450
+                || parseInt(headNode.style.top) < 0 || parseInt(headNode.style.top) > 450) {
                 clearInterval(t)
                 alert("You hit the wall!")
             }
             //hit the tail
-            if(bodyNodes.length>0){
-                for(var n=0; n<bodyNodes.length;n++){
-                    if (headNode.style.left==bodyNodes[n].style.left&&
-                    headNode.style.top==bodyNodes[n].style.top) {
+            if (bodyNodes.length > 0) {
+                for (var n = 0; n < bodyNodes.length; n++) {
+                    if (headNode.style.left == bodyNodes[n].style.left &&
+                        headNode.style.top == bodyNodes[n].style.top) {
                         alert("You hit your tail!")
                         clearInterval(t)
                     }
@@ -273,8 +273,17 @@
                 }
                 bodyNode.value = lastNode.value
                 bodyNodes.push(bodyNode)
-                foodNode.style.left = parseInt(Math.random() * 10) * 50 + "px"
-                foodNode.style.top = parseInt(Math.random() * 10) * 50 + "px"
+                var px= parseInt(Math.random() * 10) * 50
+                var py= parseInt(Math.random() * 10) * 50
+                for(var n=0; n<bodyNodes.length;n++){
+                    if (parseInt(bodyNodes[n].style.left)==px && parseInt(bodyNodes[n].style.top)==py) {
+                        px=parseInt(Math.random() * 10) * 50
+                        py=parseInt(Math.random() * 10) * 50
+                        n=-1
+                    }
+                }
+                foodNode.style.left = px + "px"
+                foodNode.style.top = py + "px"
             }
         }
 
@@ -283,16 +292,24 @@
         document.onkeydown = function (e) {
             switch (e.keyCode) {
                 case 37:
-                    headNode.value = "left"
+                    if (headNode.value != "right" || bodyNodes.length==0) {
+                        headNode.value = "left"
+                    }
                     break
                 case 38:
-                    headNode.value = "up"
+                if (headNode.value != "down" || bodyNodes.length==0) {
+                        headNode.value = "up"
+                    }
                     break
                 case 39:
-                    headNode.value = "right"
+                if (headNode.value != "left" || bodyNodes.length==0) {
+                        headNode.value = "right"
+                    }
                     break
                 case 40:
-                    headNode.value = "down"
+                if (headNode.value != "up" || bodyNodes.length==0) {
+                        headNode.value = "down"
+                    }
                     break
             }
         }
