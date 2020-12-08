@@ -1,5 +1,6 @@
 var map = document.getElementById("map")
 var bodyNodes = []
+
 //when refresh the page, generate div as food and snake head
 function createDiv(color) {
     var div = document.createElement("div")
@@ -116,8 +117,27 @@ function move() {
     }
 }
 
+function refresh() {
+    location.reload();
+}
 
-var t = setInterval(move, 300)
+function btnslow() {
+    clearInterval(t)
+    t = setInterval(move, 500)
+}
+
+function btnnormal() {
+    clearInterval(t)
+    t = setInterval(move, 350)
+}
+
+function btnfast() {
+    clearInterval(t)
+    t = setInterval(move, 200)
+}
+
+
+var t = setInterval(move, 1000000)
 document.onkeydown = function (e) {
     switch (e.keyCode) {
         case 37:
